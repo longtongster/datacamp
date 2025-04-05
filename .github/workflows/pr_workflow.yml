@@ -19,6 +19,10 @@ jobs:
         with:
           python-version: 3.9
 
+      - name: print secret
+        run: | 
+          echo "my secret is ${{secrets.supersecret}}"  
+
       # Run the hello_world.py python script
       - name: Run Python script
         run: |
