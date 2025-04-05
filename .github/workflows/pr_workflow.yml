@@ -5,9 +5,17 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  # Set the value of global environment variable
+  GLOBAL_VARIABLE: global_value
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Set the value of local environment variable
+      JOB_VARIABLE: job_value
+
     steps:
       # Use checkout action to check out the repository on the runner
       - name: Checkout
@@ -27,3 +35,9 @@ jobs:
       - name: Run Python script
         run: |
           python3 hello_world.py
+
+      - name: Print Variables
+        # Write the environment variable whose value is set
+        run: |
+          echo "Global Variable: ${{ env.GLOBAL_VARIABLE }}"
+          echo "Set job Variable: ${{ env.JOB_VARIABLE }}"
